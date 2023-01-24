@@ -1,42 +1,47 @@
 package com.example.studentmanagmentsystem.controller;
 
+import com.example.studentmanagmentsystem.StudenrsDAO.StudentDAO;
 import com.example.studentmanagmentsystem.entity.Student;
-import com.example.studentmanagmentsystem.impl.StudentServiceImpl;
 import com.example.studentmanagmentsystem.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.sql.SQLException;
 
 @Controller
+@RequestMapping("students")
 public class StudentController {
 
     private StudentService studentService;
+    private StudentDAO dao;
+
 
     public StudentController(StudentService studentService) {
         super();
         this.studentService = studentService;
     }
 
-    @GetMapping("/students")
+    @GetMapping()
     public String listStudents(Model model){
        model.addAttribute("students" , studentService.getAllStudents());
        return "students";
     }
 
 
-    @GetMapping("/students/new")
+    @GetMapping("/new")
     public String createStudentForm(Model model){
-
-        Student student  =  new Student();
-        model.addAttribute("student" , student);
+        model.addAttribute("student" , new  Student());
         return "create_student";
     }
-    @PostMapping("/students")
+    @PostMapping()
     public String saveStudent(@ModelAttribute("student") Student student) {
         studentService.saveStudent(student);
         return "redirect:/students";
     }
+
+
+
 }

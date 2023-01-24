@@ -67,6 +67,22 @@
                                 placeholder="Enter Student Email"
                         />
                     </div>
+                    <div class ="form-group">
+                        <label> Student gender </label>
+                        <input
+                                list="genders"
+                                id="gender"
+                                name = "gender"
+                                th:field = "*{gender}"
+                                class = "form-control"
+                                placeholder="Enter Student gender   "
+                        />
+                        <datalist id="genders">
+                            <option value="Female">
+                            <option value="Male">
+                        </datalist>
+                    </div>
+
 
                     <div class = "box-footer">
                         <button type="submit" class = "btn btn-primary">

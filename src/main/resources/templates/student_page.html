@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My page</title>
+</head>
+<body>
+<h1>My name is : </h1>
+ <p th:text="${student.getFirstName()}" />
+<h1> My surname is </h1>
+<p th:text="${student.getLastName()}"/>
+<h1>My email :</h1>
+<p th:text="${student.getEmail()}">
+</body>
+</html>
