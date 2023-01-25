@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
+import org.hibernate.annotations.Type;
+
+import java.util.*;
 
 
 @Entity
@@ -32,12 +35,13 @@ public class Student {
     @Column(name = "age")
     private int age;
 
-    public Student(String firstName, String lastName, String email , String gender , int age) {
+
+    public Student(String firstName, String lastName, String email, String gender, int age ) {
         this.firstName = firstName;
-        this.age = age;
         this.lastName = lastName;
         this.email = email;
         this.gender = gender;
+        this.age = age;
     }
 
     public Student() {

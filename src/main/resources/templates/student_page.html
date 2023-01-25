@@ -15,5 +15,20 @@
 <p th:text="${student.getGender()}"/>
 <h1>My email :</h1>
 <p th:text="${student.getEmail()}"/>
+<tr th:each="book: ${books}">
+    <div th:if = "${s}">
+    <td th:text="${book.getTitle()}"></td>
+    <td th:text="${book.getAuthor()}"></td>
+    <td th:text="${book.getYear()}"></td>
+    <td th:text="${book.getDescription()}"></td>
+    <td th:text="${book.getGenre()}"></td>
+    <td>
+        <a th:href="@{/books/{id}(id=${book.id})}"
+           class="btn btn-danger">Delete</a>
+    </td>
+    </div>
+</tr>
+
+</tr>
 </body>
 </html>

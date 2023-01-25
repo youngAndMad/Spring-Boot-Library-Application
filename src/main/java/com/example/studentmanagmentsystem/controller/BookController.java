@@ -1,15 +1,14 @@
 package com.example.studentmanagmentsystem.controller;
 
 import com.example.studentmanagmentsystem.entity.Book;
-import com.example.studentmanagmentsystem.repository.BookRepository;
 import com.example.studentmanagmentsystem.service.serv.BookService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
+
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+
 
 @Controller
 @RequestMapping("books")
@@ -34,8 +33,17 @@ public class BookController {
     }
 
     @PostMapping()
-    public String saveBook(@ModelAttribute("book") Book book){
+    public String saveBook(@ModelAttribute("book") @Valid Book book , BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "create_book";
+        }
         bookService.saveBook(book);
        return  "redirect:/books";
+    }
+
+    @GetMapping("/{id}")
+    public String deleteBook(@PathVariable Long id){
+        bookService.deleteBookById(id);
+        return "redirect:/books";
     }
 }

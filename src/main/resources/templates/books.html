@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="ISO-8859-1">
     <title>Book system</title>
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
 </head>
 <body>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+
 
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
@@ -22,6 +24,8 @@
     </ul>
   </div>
 </nav>
+
+
 <div class="container">
   <div class="row">
     <h1> List Books </h1>
@@ -40,6 +44,7 @@
     <th>Book year</th>
     <th>Book description</th>
     <th>Book genre</th>
+    <th>Actions</th>
   </tr>
   </thead>
 
@@ -50,10 +55,16 @@
     <td th:text="${book.getYear()}"></td>
     <td th:text="${book.getDescription()}"></td>
     <td th:text="${book.getGenre()}"></td>
+    <td>
+      <a th:href="@{/books/{id}(id=${book.id})}"
+         class="btn btn-danger">Delete</a>
+    </td>
   </tr>
   </tbody>
 
 </table>
+
+
 </div>
 </body>
 </html>

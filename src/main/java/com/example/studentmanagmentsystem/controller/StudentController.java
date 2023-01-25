@@ -1,6 +1,7 @@
 package com.example.studentmanagmentsystem.controller;
 
 import com.example.studentmanagmentsystem.entity.Student;
+import com.example.studentmanagmentsystem.service.serv.BookService;
 import com.example.studentmanagmentsystem.service.serv.StudentService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -13,9 +14,11 @@ import org.springframework.web.bind.annotation.*;
 public class StudentController {
 
     private StudentService studentService;
+    private BookService bookService;
 
-    public StudentController(StudentService studentService)  {
+    public StudentController(StudentService studentService , BookService bookService)  {
         super();
+        this.bookService = bookService;
         this.studentService = studentService;
     }
 
@@ -68,6 +71,8 @@ public class StudentController {
     @GetMapping("/certainInfo/{id}")
     public String certainStudentInfo(@PathVariable Long id , Model model){
         model.addAttribute("student" , studentService.getStudentById(id));
+       // model.addAttribute("studentBooks" , studentService.studentBooks(id));
+        model.addAttribute("books" ,bookService.getAllBooks());
         return "student_page";
     }
 
