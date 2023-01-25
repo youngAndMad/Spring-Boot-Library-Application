@@ -1,8 +1,8 @@
-package com.example.studentmanagmentsystem.impl;
+package com.example.studentmanagmentsystem.service.impl;
 
 import com.example.studentmanagmentsystem.entity.Student;
 import com.example.studentmanagmentsystem.repository.StudentRepository;
-import com.example.studentmanagmentsystem.service.StudentService;
+import com.example.studentmanagmentsystem.service.serv.StudentService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +24,23 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student saveStudent(Student student) {
-       return studentRepository.save(student);
+        return studentRepository.save(student);
     }
+
+    @Override
+    public Student getStudentById(Long id) {
+        return studentRepository.findById(id).get();
+    }
+
+    @Override
+    public Student updateStudent(Student student) {
+        return saveStudent(student);
+    }
+
+    @Override
+    public void deleteStudentById(Long id) {
+        studentRepository.deleteById(id);
+    }
+
+
 }

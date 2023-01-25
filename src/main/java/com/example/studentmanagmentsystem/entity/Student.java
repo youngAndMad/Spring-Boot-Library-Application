@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
+
 
 @Entity
 @Table(name = "students")
@@ -21,7 +21,7 @@ public class Student {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Email
+    @Email(message = "invalid login")
     @Column(name = "email", nullable = false)
     private String email;
 
@@ -29,7 +29,7 @@ public class Student {
     private String gender;
 
     @Min(value = 0 , message = "age should be greater than 0")
-    @Column(name = "age" , nullable = false)
+    @Column(name = "age")
     private int age;
 
     public Student(String firstName, String lastName, String email , String gender , int age) {
@@ -79,5 +79,11 @@ public class Student {
 
     public void setId(Long id) {
         this.id = id;
+    }
+    public int getAge() {
+        return age;
+    }
+    public void setAge(int age) {
+        this.age = age;
     }
 }
