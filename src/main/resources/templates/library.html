@@ -2,13 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title>Student Management System</title>
+    <title>Library Management System</title>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
 </head>
-<body>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -17,61 +16,64 @@
 
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
+
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/library}">Library Management</a>
+                <a class="nav-link" th:href="@{/students}">Student Management</a>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/books}">Book Management</a>
             </li>
+
         </ul>
     </div>
 </nav>
+</head>
+
+<body>
 
 <div class="container">
+
     <div class="row">
-        <h1> List Students </h1>
+        <h1> Borrowed books </h1>
     </div>
 
     <div class="row">
         <div class="col-lg-3">
-            <a th:href="@{/students/new}" class="btn btn-primary btn-sm mb-3"> Add Student</a>
+            <a th:href="@{/library/givebook}" class="btn btn-primary btn-sm mb-3">Register book</a>
         </div>
     </div>
+
     <table class="table table-striped table-bordered">
+
         <thead class="table-dark">
         <tr>
-            <th> Student First Name</th>
-            <th> Student Last Name</th>
-            <th> Student age</th>
-            <th> Student Email</th>
-            <th> Student gender</th>
+
+            <th> Student Name</th>
+            <th> Book title</th>
+            <th> Taken at</th>
             <th> Actions</th>
+
         </tr>
         </thead>
 
         <tbody>
-        <tr th:each="student: ${students}">
-            <td th:text="${student.firstName}"></td>
-            <td th:text="${student.lastName}"></td>
-            <td th:text="${student.age}"></td>
-            <td th:text="${student.email}"></td>
-            <td th:text="${student.gender}"></td>
+        <tr th:each="order: ${orders}">
+            <td th:text="${order.getStudentName()}"></td>
+            <td th:text="${order.getBookTitle()}"></td>
+            <td th:text="${order.getTakenAt()}"></td>
             <td>
-                <a th:href="@{/students/certainInfo/{id}(id=${student.id})}"
-                   class="btn btn-info">More Info</a>
-
-                <a th:href="@{/students/delete/{id}(id=${student.id})}"
-                   class="btn btn-danger">Delete</a>
-
-                <a th:href = "@{/students/edit/{id}(id=${student.id})}"
-                   class = "btn btn-primary">Update</a>
-
+                <a th:href="@{/library/returnbook/{id}(id=${order.id})}"
+                   class="btn btn-warning">Return</a>
             </td>
+
         </tr>
+
         </tbody>
 
     </table>
 
 </div>
+
 </body>
 </html>

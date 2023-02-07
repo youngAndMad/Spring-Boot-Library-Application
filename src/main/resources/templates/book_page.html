@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Book information</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<h3>Title : </h3>
+<a th:text="${book.getTitle()}" />
+<h3> Author :</h3>
+<a th:text="${book.getAuthor()}"/>
+<h3>  Year :</h3>
+<a th:text="${book.getYear()}"/>
+<h3> Genre :</h3>
+<a th:text="${book.getGenre()}"/>
+<h3> Description :</h3>
+<a th:text="${book.getDescription()}"/>
+<h3> Quantity :</h3>
+<a th:text="${book.getQuantity()}"></a>
+
+<h3>Owners</h3>
+<tr th:each="owner: ${owners}">
+    <h5>Name:</h5>
+    <a th:text="${owner.getStudentName()}"></a>
+    <h5>Taken at:</h5>
+    <a th:text="${owner.getTakenAt()}"></a>
+    <p></p>
+</tr>
+
+<p></p>
+      <a th:href="@{/books/{id}(id=${book.id})}"
+         class="btn btn-danger">Delete</a>
+
+      <a th:href = "@{/books/edit/{id}(id=${book.id})}"
+         class = "btn btn-primary">Update</a>
+
+    </td>
+  </div>
+</tr>
+
+</tr>
+</body>
+</html>

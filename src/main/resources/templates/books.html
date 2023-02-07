@@ -19,7 +19,7 @@
         <a class="nav-link" th:href="@{/students}">Student Management</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" th:href="@{/books}">Book Management</a>
+        <a class="nav-link" th:href="@{/library}">Library Management</a>
       </li>
     </ul>
   </div>
@@ -44,6 +44,8 @@
     <th>Book year</th>
     <th>Book description</th>
     <th>Book genre</th>
+    <th>Book quantity</th>
+
     <th>Actions</th>
   </tr>
   </thead>
@@ -55,9 +57,16 @@
     <td th:text="${book.getYear()}"></td>
     <td th:text="${book.getDescription()}"></td>
     <td th:text="${book.getGenre()}"></td>
+    <td th:text="${book.getQuantity()}"></td>
     <td>
-      <a th:href="@{/books/{id}(id=${book.id})}"
-         class="btn btn-danger">Delete</a>
+      <a th:href="@{/books/unActive/{id}(id=${book.id})}"
+         class="btn btn-danger">Un active</a>
+
+      <a th:href="@{/books/certainInfo/{id}(id=${book.id})}"
+         class="btn btn-secondary">More info</a>
+
+      <a th:href = "@{/books/edit/{id}(id=${book.id})}"
+         class = "btn btn-primary">Update</a>
     </td>
   </tr>
   </tbody>

@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="ISO-8859-1">
     <title>My page</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
 </head>
 <body>
 <h1>My name is : </h1>
@@ -14,19 +18,14 @@
 <h1> Gender</h1>
 <p th:text="${student.getGender()}"/>
 <h1>My email :</h1>
-<p th:text="${student.getEmail()}"/>
+<p th:text="${student.email}">
+
+
+
+<h2>My borrowed books</h2>
 <tr th:each="book: ${books}">
-    <div th:if = "${s}">
-    <td th:text="${book.getTitle()}"></td>
-    <td th:text="${book.getAuthor()}"></td>
-    <td th:text="${book.getYear()}"></td>
-    <td th:text="${book.getDescription()}"></td>
-    <td th:text="${book.getGenre()}"></td>
-    <td>
-        <a th:href="@{/books/{id}(id=${book.id})}"
-           class="btn btn-danger">Delete</a>
-    </td>
-    </div>
+    <p  th:text="${book.getBookTitle()}"></p>
+    <p  th:text="${book.getTakenAt()}"></p>
 </tr>
 
 </tr>

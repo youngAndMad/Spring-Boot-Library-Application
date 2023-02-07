@@ -14,73 +14,92 @@
 <div class = "container">
     <div class = "row">
         <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-            <h1 class = "text-center"> Register New Student </h1>
+            <h1 class = "text-center"> Welcome to Daneker's Library </h1>
             <div class = "card-body">
                 <form th:action="@{/students}" th:object = "${student}" method="POST">
                     <div class ="form-group">
-                        <label> Student First Name </label>
+                        <label> Enter your first Name </label>
                         <input
                                 type = "text"
+                                autocomplete="off"
                                 name = "firstName"
                                 th:field = "*{firstName}"
                                 class = "form-control"
-                                placeholder="Enter Student First Name"
+                                placeholder="Enter your first Name "
                         />
                     </div>
                     <div style="color: red" th:if ="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
 
                     <div class ="form-group">
-                        <label> Student Last Name </label>
+                        <label> Enter your last Name </label>
                         <input
                                 type = "text"
                                 name = "lastName"
+                                autocomplete="off"
                                 th:field = "*{lastName}"
                                 class = "form-control"
-                                placeholder="Enter Student Last Name"
+                                placeholder=" Enter your last Name "
                         />
                     </div>
                     <div style="color: red" th:if ="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
 
                     <div class ="form-group">
-                        <label> Student Last Name </label>
+                        <label> Enter your age </label>
                         <input
                                 type = "number"
                                 name = "age"
+                                autocomplete="off"
                                 th:field = "*{age}"
                                 class = "form-control"
-                                placeholder="Enter Student age"
+                                placeholder="Enter your age"
                         />
                     </div>
                     <div style="color: red" th:if ="${#fields.hasErrors('age')}" th:errors="*{age}"></div>
 
-
                     <div class ="form-group">
-                        <label> Student Email </label>
-                        <input
-                                type = "text"
-                                name = "email"
-                                th:field = "*{email}"
-                                class = "form-control"
-                                placeholder="Enter Student Email"
-                        />
-                    </div>
-                    <div style="color: red" th:if ="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
-
-                    <div class ="form-group">
-                        <label> Student gender </label>
+                        <label> Specify your gender </label>
                         <input
                                 list="genders"
+                                autocomplete="off"
                                 id="gender"
                                 name = "gender"
                                 th:field = "*{gender}"
                                 class = "form-control"
-                                placeholder="Enter Student gender   "
+                                placeholder="Specify your gender"
                         />
                         <datalist id="genders">
                             <option value="Female">
                             <option value="Male">
                         </datalist>
                     </div>
+                    <div style="color: red" th:if ="${#fields.hasErrors('gender')}" th:errors="*{gender}"></div>
+
+
+                    <div class ="form-group">
+                        <label> Enter your email </label>
+                        <input
+                                type = "text"
+                                name = "email"
+                                autocomplete="off"
+                                th:field = "*{email}"
+                                class = "form-control"
+                                placeholder="Enter your email"
+                        />
+                    </div>
+                    <div style="color: red" th:if ="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+
+                    <div class ="form-group">
+                        <label> Enter your password </label>
+                        <input
+                                type = "password"
+                                autocomplete="off"
+                                name = "password"
+                                th:field = "*{password}"
+                                class = "form-control"
+                                placeholder="Enter your password "
+                        />
+                    </div>
+                    <div style="color: red" th:if ="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
 
 
                     <div class = "box-footer">

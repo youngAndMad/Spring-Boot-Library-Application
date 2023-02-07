@@ -3,6 +3,7 @@ package com.example.studentmanagmentsystem.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 @Entity
 @Table(name = "books")
@@ -14,6 +15,7 @@ public class Book {
     @NotEmpty(message = "book title should be empty")
     @Column(name = "title" , nullable = false)
     private String title;
+
     @NotEmpty(message = "book author should be empty")
     @Column(name = "author" , nullable = false)
     private String author;
@@ -30,12 +32,21 @@ public class Book {
     @Column(name = "description"  , nullable = false)
     private String description;
 
-    public Book(String title, String author, int year, String genre, String description) {
+    @Column(name = "quantity")
+  //  @Min(value = 1 , message = "quantity should be greater than 1")
+    private int quantity;
+
+    @Column(name = "is_active")
+    private boolean isActive;
+
+    public Book(String title, String author, int year, String genre, String description , int quantity , boolean isActive) {
         this.title = title;
+        this.isActive = isActive;
         this.author = author;
         this.year = year;
         this.genre = genre;
         this.description = description;
+        this.quantity = quantity;
     }
 
     public Book(){}
@@ -82,5 +93,25 @@ public class Book {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }

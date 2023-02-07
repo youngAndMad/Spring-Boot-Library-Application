@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.Type;
 
 import java.util.*;
@@ -35,10 +36,14 @@ public class Student {
     @Column(name = "age")
     private int age;
 
+    @Column(name = "password")
+    @Size(min = 8 , message = "password should be longest than 8 characters")
+    private String password;
 
-    public Student(String firstName, String lastName, String email, String gender, int age ) {
+    public Student(String firstName, String lastName, String email, String gender, int age , String password ) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.password = password;
         this.email = email;
         this.gender = gender;
         this.age = age;
@@ -89,5 +94,13 @@ public class Student {
     }
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
