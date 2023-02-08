@@ -33,7 +33,6 @@ public class Book {
     private String description;
 
     @Column(name = "quantity")
-  //  @Min(value = 1 , message = "quantity should be greater than 1")
     private int quantity;
 
     @Column(name = "is_active")

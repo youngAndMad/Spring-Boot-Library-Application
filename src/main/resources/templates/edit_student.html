@@ -10,15 +10,10 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-  <!-- Brand -->
   <a class="navbar-brand" href="#">Student Management System</a>
-
-  <!-- Toggler/collapsibe Button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
-
-  <!-- Navbar links -->
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -42,10 +37,10 @@
                     name = "firstName"
                     th:field = "*{firstName}"
                     class = "form-control"
+                    autocomplete="off"
                     placeholder="Enter Student First Name"
             />
           </div>
-
           <div class ="form-group">
             <label> Student Last Name </label>
             <input
@@ -53,39 +48,40 @@
                     name = "lastName"
                     th:field = "*{lastName}"
                     class = "form-control"
+                    autocomplete="off"
                     placeholder="Enter Student Last Name"
             />
           </div>
-
           <div class ="form-group">
             <label> Student Email </label>
             <input
                     type = "text"
                     name = "email"
                     th:field = "*{email}"
+                    autocomplete="off"
                     class = "form-control"
                     placeholder="Enter Student Email"
             />
           </div>
-
           <div class ="form-group">
             <label> Enter your age </label>
             <input
                     type = "number"
                     name = "age"
+                    autocomplete="off"
                     th:field = "*{age}"
                     class = "form-control"
                     placeholder="Enter your age"
             />
           </div>
           <div style="color: red" th:if ="${#fields.hasErrors('age')}" th:errors="*{age}"></div>
-
           <div class ="form-group">
             <label> Specify your gender </label>
             <input
                     list="genders"
                     id="gender"
                     name = "gender"
+                    autocomplete="off"
                     th:field = "*{gender}"
                     class = "form-control"
                     placeholder="Specify your gender"
@@ -97,27 +93,12 @@
           </div>
           <div style="color: red" th:if ="${#fields.hasErrors('gender')}" th:errors="*{gender}"></div>
 
-
-          <div class ="form-group">
-            <label> Enter your password </label>
-            <input
-                    type = "password"
-                    name = "password"
-                    th:field = "*{password}"
-                    class = "form-control"
-                    placeholder="Enter your password "
-            />
-          </div>
-          <div style="color: red" th:if ="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
-
-
           <div class = "box-footer">
             <button type="submit" class = "btn btn-primary">
               Submit
             </button>
           </div>
         </form>
-
       </div>
     </div>
   </div>

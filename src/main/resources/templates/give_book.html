@@ -21,47 +21,45 @@
         </ul>
     </div>
 </nav>
-
-
-<div class="container">
-    <div class="row">
+<div class="container" style="width: 900px;">
+    <div style="display: flex;justify-content: center">
         <h1> Library system </h1>
     </div>
-</div>
-<form th:action="@{/library}" th:object = "${connector}" method="POST">
-<div style="text-align: center">
-    <h3>Choose student</h3>
-    <input
-            class="form-control"
-            name="studentBook"
-            autocomplete="off"
-            th:field="*{studentName}"
-            list="STUDENTS">
-    <datalist id="STUDENTS" >
-        <option th:each="student: ${students}" th:text="${student.getFirstName()}">
-    </datalist>
-</div>
-    <div style="color: red" th:if ="${#fields.hasErrors('studentName')}" th:errors="*{studentName}"></div>
 
-<div style="text-align: center;">
-    <h3>Choose book</h3>
+<form th:action="@{/library}" th:object="${connector}" method="POST">
+    <div style="text-align: center">
+        <h3>Choose student</h3>
         <input
+                class="form-control" ``
+                name="studentBook"
+                autocomplete="off"
+                th:field="*{studentName}"
+                list="STUDENTS">
+        <datalist id="STUDENTS">
+            <option th:each="student: ${students}" th:text="${student.getFirstName()}">
+        </datalist>
+    </div>
+    <div style="color: red" th:if="${#fields.hasErrors('studentName')}" th:errors="*{studentName}"></div>
+    <div style="text-align: center">
+        <h3>Choose book</h3>
+        <input
+                th:align="center"
                 class="form-control"
                 name="studentBook"
                 th:field="*{bookTitle}"
                 autocomplete="off"
                 list="BOOKS">
-        <datalist id="BOOKS" >
+        <datalist id="BOOKS">
             <option th:each="book: ${books}" th:text="${book.getTitle()}">
         </datalist>
-</div>
-    <div style="color: red" th:if ="${#fields.hasErrors('bookTitle')}" th:errors="*{bookTitle}"></div>
-
-<div class = "box-footer">
-    <button type="submit" class = "btn btn-primary">
-        Confirm
-    </button>
-</div>
+    </div>
+    <div style="color: red" th:if="${#fields.hasErrors('bookTitle')}" th:errors="*{bookTitle}"></div>
+    <div class="box-footer" style="display: flex;justify-content: center">
+        <button type="submit" class="btn btn-primary" >
+            Confirm
+        </button>
+    </div>
 </form>
+</div>
 </body>
 </html>

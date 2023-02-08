@@ -40,30 +40,35 @@ public class BookController {
 
     @PostMapping()
     public String saveBook(@ModelAttribute("book") @Valid Book book, BindingResult bindingResult) {
+
         if (bindingResult.hasErrors()) {
             return "create_book";
         }
+
         book.setActive(true);
         bookService.saveBook(book);
+
         return "redirect:/books";
     }
 
 
     @GetMapping("/edit/{id}")
     public String editBookForm(@PathVariable Long id, Model model) {
+
         model.addAttribute("book", bookService.getBookById(id));
         return "edit_book";
-
     }
 
     @GetMapping("/certainInfo/{id}")
     public String certainBook(Model model, @PathVariable Long id) {
         model.addAttribute("book", bookService.getBookById(id));
         model.addAttribute("owners",
-                connectorService.getAllOrders().
+                connectorService
+                        .getAllOrders().
                         stream().
                         filter(order -> order.getBookId().equals(id)).
                         collect(Collectors.toList()));
+
         return "book_page";
     }
 
@@ -73,29 +78,20 @@ public class BookController {
                              BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            return "redirect:/books/edit/" + id;
+            return "redirect:/books/    edit/" + id;
         }
 
-        Book newBook = bookService.getBookById(id);
-        newBook.setTitle(book.getTitle());
-        newBook.setQuantity(book.getQuantity());
-        newBook.setGenre(book.getGenre());
-        newBook.setDescription(book.getDescription());
-        newBook.setId(book.getId());
-        newBook.setYear(book.getYear());
-        newBook.setAuthor(book.getAuthor());
-
-
-        bookService.saveBook(newBook);
-
+        bookService.updateBook(book);
         return "redirect:/books";
 
     }
 
     @GetMapping("/unActive/{id}")
     public String unActiveBook(@PathVariable Long id) {
+
         Book bookToUnActive = bookService.getBookById(id);
         bookToUnActive.setActive(false);
+
         bookService.saveBook(bookToUnActive);
         return "redirect:/books";
     }

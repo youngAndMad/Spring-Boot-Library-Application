@@ -27,23 +27,20 @@ public class Student {
 
     @Email(message = "invalid login")
     @Column(name = "email", nullable = false)
+    @NotEmpty(message = "email should not be empty")
     private String email;
 
-    @Column(name = "gender" , nullable = false)
+    @Column(name = "gender", nullable = false)
     private String gender;
 
-    @Min(value = 0 , message = "age should be greater than 0")
+    @Min(value = 0, message = "age should be greater than 0")
     @Column(name = "age")
     private int age;
 
-    @Column(name = "password")
-    @Size(min = 8 , message = "password should be longest than 8 characters")
-    private String password;
 
-    public Student(String firstName, String lastName, String email, String gender, int age , String password ) {
+    public Student(String firstName, String lastName, String email, String gender, int age) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.password = password;
         this.email = email;
         this.gender = gender;
         this.age = age;
@@ -59,10 +56,12 @@ public class Student {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-    public String getGender(){
+
+    public String getGender() {
         return gender;
     }
-    public void setGender(String gender){
+
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
@@ -89,18 +88,13 @@ public class Student {
     public void setId(Long id) {
         this.id = id;
     }
+
     public int getAge() {
         return age;
     }
+
     public void setAge(int age) {
         this.age = age;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

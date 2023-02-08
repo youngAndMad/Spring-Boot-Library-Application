@@ -1,8 +1,8 @@
 package com.example.studentmanagmentsystem.service;
 
-import com.example.studentmanagmentsystem.entity.Book;
 import com.example.studentmanagmentsystem.entity.Student;
 import com.example.studentmanagmentsystem.repository.StudentRepository;
+import com.example.studentmanagmentsystem.util.Enrichment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,19 +17,22 @@ public class StudentService {
     private final StudentRepository studentRepository;
     private final ConnectorService connectorService;
     private final BookService bookService;
+    private final Enrichment enrichment;
 
 
     @Autowired
     public StudentService(StudentRepository studentRepository,
                           ConnectorService connectorService,
-                          BookService bookService) {
+                          BookService bookService,
+                          Enrichment enrichment) {
         this.studentRepository = studentRepository;
         this.connectorService = connectorService;
         this.bookService = bookService;
+        this.enrichment = enrichment;
     }
 
     public List<Student> getAllStudents() {
-        return studentRepository.findAll();
+        return studentRepository.findAll().stream().sorted((student1,student2)-> (int) (student1.getId()-student2.getId())).collect(Collectors.toList());
     }
 
     public Student saveStudent(Student student) {
@@ -40,8 +43,10 @@ public class StudentService {
         return studentRepository.findById(id).orElse(null);
     }
 
-    public Student updateStudent(Student student) {
-        return saveStudent(student);
+    public void updateStudent(Student student) {
+        Student studentToSave = getStudentById(student.getId());
+        enrichment.enrichStudent(student,studentToSave);
+        saveStudent(studentToSave);
     }
 
     public void deleteStudentById(Long id) {

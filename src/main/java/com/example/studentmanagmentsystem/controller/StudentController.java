@@ -41,6 +41,7 @@ public class StudentController {
 
     @PostMapping()
     public String saveStudent(@ModelAttribute("student") @Valid Student student, BindingResult bindingResult) {
+
         if (bindingResult.hasErrors()) {
             return "create_student";
         }
@@ -52,8 +53,8 @@ public class StudentController {
 
     @GetMapping("/edit/{id}")
     public String editStudentForm(@PathVariable Long id, Model model) {
-        model.addAttribute("student", studentService.getStudentById(id));
 
+        model.addAttribute("student", studentService.getStudentById(id));
         return "edit_student";
     }
 
@@ -66,18 +67,9 @@ public class StudentController {
             return "redirect:/students/edit/" + id;
         }
 
-        Student existingStudent = studentService.getStudentById(id);
-        existingStudent.setId(student.getId());
-        existingStudent.setGender(student.getGender());
-        existingStudent.setFirstName(student.getFirstName());
-        existingStudent.setLastName(student.getLastName());
-        existingStudent.setEmail(student.getEmail());
-
-
-        studentService.updateStudent(existingStudent);
-
-
+        studentService.updateStudent(student);
         return "redirect:/students";
+
     }
 
 
@@ -89,12 +81,14 @@ public class StudentController {
 
     @GetMapping("/certainInfo/{id}")
     public String certainStudentInfo(@PathVariable Long id, Model model) {
+
         model.addAttribute("student", studentService.getStudentById(id));
         model.addAttribute("books",
                 connectorService.getAllOrders().
                         stream().
                         filter(order -> order.getStudentId().equals(id)).
                         collect(Collectors.toList()));
+
         return "student_page";
     }
 

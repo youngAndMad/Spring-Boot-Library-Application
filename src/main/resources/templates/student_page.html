@@ -19,15 +19,15 @@
 <p th:text="${student.getGender()}"/>
 <h1>My email :</h1>
 <p th:text="${student.email}">
-
-
-
-<h2>My borrowed books</h2>
-<tr th:each="book: ${books}">
-    <p  th:text="${book.getBookTitle()}"></p>
-    <p  th:text="${book.getTakenAt()}"></p>
-</tr>
-
+<div th:if = "${books.size()>0}">
+    <h2>My borrowed books</h2>
+    <tr th:each="book: ${books}">
+        <h5>Book title</h5>
+        <p  th:text="${book.getBookTitle()}"></p>
+        <h5>Taken at</h5>
+        <p  th:text="${book.getTakenAt()}"></p>
+    </tr>
+</div>
 </tr>
 </body>
 </html>

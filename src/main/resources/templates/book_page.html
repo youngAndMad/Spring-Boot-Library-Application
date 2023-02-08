@@ -21,27 +21,18 @@
 <a th:text="${book.getDescription()}"/>
 <h3> Quantity :</h3>
 <a th:text="${book.getQuantity()}"></a>
-
-<h3>Owners</h3>
-<tr th:each="owner: ${owners}">
-    <h5>Name:</h5>
-    <a th:text="${owner.getStudentName()}"></a>
-    <h5>Taken at:</h5>
-    <a th:text="${owner.getTakenAt()}"></a>
-    <p></p>
-</tr>
-
-<p></p>
-      <a th:href="@{/books/{id}(id=${book.id})}"
-         class="btn btn-danger">Delete</a>
-
-      <a th:href = "@{/books/edit/{id}(id=${book.id})}"
-         class = "btn btn-primary">Update</a>
-
+<div th:if="${owners.size()>0}">
+    <h3>Owners</h3>
+    <tr th:each="owner: ${owners}">
+        <h5>Name:</h5>
+        <a th:text="${owner.getStudentName()}"></a>
+        <h5>Taken at:</h5>
+        <a th:text="${owner.getTakenAt()}"></a>
+        <p></p>
+    </tr>
+</div>
     </td>
   </div>
-</tr>
-
 </tr>
 </body>
 </html>

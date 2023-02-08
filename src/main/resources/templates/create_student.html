@@ -88,20 +88,6 @@
                     </div>
                     <div style="color: red" th:if ="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
 
-                    <div class ="form-group">
-                        <label> Enter your password </label>
-                        <input
-                                type = "password"
-                                autocomplete="off"
-                                name = "password"
-                                th:field = "*{password}"
-                                class = "form-control"
-                                placeholder="Enter your password "
-                        />
-                    </div>
-                    <div style="color: red" th:if ="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
-
-
                     <div class = "box-footer">
                         <button type="submit" class = "btn btn-primary">
                             register

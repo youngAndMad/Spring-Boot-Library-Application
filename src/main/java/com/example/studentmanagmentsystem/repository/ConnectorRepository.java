@@ -7,6 +7,4 @@ import java.util.List;
 import java.util.logging.LogManager;
 
 public interface ConnectorRepository extends JpaRepository<Connector,Long> {
-    void deleteConnectorsByStudentId(Long studentId);
-    void deleteConnectorsByBookId(Long bookId);
 }
