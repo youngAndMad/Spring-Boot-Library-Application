@@ -21,7 +21,8 @@ public class StudentController {
 
 
     @Autowired
-    public StudentController(StudentService studentService, ConnectorService connectorService) {
+    public StudentController(StudentService studentService,
+                             ConnectorService connectorService) {
         this.studentService = studentService;
         this.connectorService = connectorService;
     }
@@ -40,7 +41,8 @@ public class StudentController {
     }
 
     @PostMapping()
-    public String saveStudent(@ModelAttribute("student") @Valid Student student, BindingResult bindingResult) {
+    public String saveStudent(@ModelAttribute("student") @Valid Student student,
+                              BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return "create_student";
@@ -52,15 +54,15 @@ public class StudentController {
 
 
     @GetMapping("/edit/{id}")
-    public String editStudentForm(@PathVariable Long id, Model model) {
+    public String editStudentForm(@PathVariable Long id,
+                                  Model model) {
 
         model.addAttribute("student", studentService.getStudentById(id));
         return "edit_student";
     }
 
     @PostMapping("/{id}")
-    public String updateStudent(@PathVariable Long id,
-                                @ModelAttribute("student") @Valid Student student,
+    public String updateStudent(@PathVariable Long id, @ModelAttribute("student") @Valid Student student,
                                 BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
@@ -83,11 +85,7 @@ public class StudentController {
     public String certainStudentInfo(@PathVariable Long id, Model model) {
 
         model.addAttribute("student", studentService.getStudentById(id));
-        model.addAttribute("books",
-                connectorService.getAllOrders().
-                        stream().
-                        filter(order -> order.getStudentId().equals(id)).
-                        collect(Collectors.toList()));
+        model.addAttribute("books", studentService.getStudentBooks(id));
 
         return "student_page";
     }

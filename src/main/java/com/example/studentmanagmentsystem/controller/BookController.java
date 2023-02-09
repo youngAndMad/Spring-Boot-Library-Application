@@ -78,21 +78,28 @@ public class BookController {
                              BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            return "redirect:/books/    edit/" + id;
+            return "redirect:/books/edit/" + id;
         }
 
         bookService.updateBook(book);
         return "redirect:/books";
 
     }
+    @GetMapping("/unactive")
+    public String unActiveBooks(Model model){
+        model.addAttribute("books" , bookService.getUnActiveBooks());
+        return "un_active_books";
+    }
+
+    @GetMapping("/active/{id}")
+    public String activeBook(@PathVariable Long id){
+        bookService.changeActive(id);
+        return "redirect:/books";
+    }
 
     @GetMapping("/unActive/{id}")
     public String unActiveBook(@PathVariable Long id) {
-
-        Book bookToUnActive = bookService.getBookById(id);
-        bookToUnActive.setActive(false);
-
-        bookService.saveBook(bookToUnActive);
+        bookService.changeActive(id);
         return "redirect:/books";
     }
 }

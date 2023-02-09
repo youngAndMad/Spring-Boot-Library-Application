@@ -39,7 +39,7 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-3">
+        <div class="col-lg-1">
             <a th:href="@{/library/givebook}" class="btn btn-primary btn-sm mb-3">Register book</a>
         </div>
     </div>
@@ -52,19 +52,24 @@
             <th> Student Name</th>
             <th> Book title</th>
             <th> Taken at</th>
+            <th> Expired </th>
             <th> Actions</th>
 
         </tr>
         </thead>
+
 
         <tbody>
         <tr th:each="order: ${orders}">
             <td th:text="${order.getStudentName()}"></td>
             <td th:text="${order.getBookTitle()}"></td>
             <td th:text="${order.getTakenAt()}"></td>
-            <td>
-                <a th:href="@{/library/returnbook/{id}(id=${order.id})}"
-                   class="btn btn-warning">Return</a>
+            <td th:text="${order.isExpired()}"></td>
+            <td th:switch="${order.isExpired()}">
+                <a th:case="true" th:href="@{/library/returnbook/{id}(id=${order.id})}"
+                   class="btn btn-danger">Return</a>
+                <a th:case="false" th:href="@{/library/returnbook/{id}(id=${order.id})}"
+                   class="btn btn-success">Return</a>
             </td>
 
         </tr>

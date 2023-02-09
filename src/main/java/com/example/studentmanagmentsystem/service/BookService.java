@@ -6,6 +6,7 @@ import com.example.studentmanagmentsystem.util.Enrichment;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.function.LongFunction;
 import java.util.stream.Collectors;
 
 
@@ -25,8 +26,16 @@ public class BookService {
                 .findAll().
                 stream().
                 filter(Book::isActive).
-                filter(book -> book.getQuantity() >= 0)
+                filter(book -> book.getQuantity() > 0)
                 .collect(Collectors.toList());
+    }
+
+    public List<Book> getUnActiveBooks(){
+        return bookRepository
+                .findAll().
+                stream().
+                filter(book ->!book.isActive() || book.getQuantity() == 0).
+                collect(Collectors.toList());
     }
 
 
@@ -52,9 +61,14 @@ public class BookService {
         book.setQuantity(book.getQuantity() + 1);
         saveBook(book);
     }
-
-    public void decrementQuantity(Book book){
-        book.setQuantity(book.getQuantity()-1);
-        saveBook(book);
+    public void changeActive(Long id){
+        Book bookToChange = getBookById(id);
+        boolean state = bookToChange.isActive();
+        if(!state && bookToChange.getQuantity() ==0){
+            bookToChange.setQuantity(1);
+        }
+        bookToChange.setActive(!state);
+        saveBook(bookToChange);
     }
+
 }

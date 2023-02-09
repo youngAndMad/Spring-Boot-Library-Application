@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Enrichment {
+
     public void enrichBook(Book book, Book bookToSave) {
         bookToSave.setTitle(book.getTitle());
         bookToSave.setQuantity(book.getQuantity());

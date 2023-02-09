@@ -33,9 +33,11 @@ public class LibraryController {
 
     @GetMapping("/givebook")
     public String giveBook(Model model){
+
         model.addAttribute("students" , studentService.getAllStudents());
         model.addAttribute("books" , bookService.getAllBooks());
         model.addAttribute("connector" , new Connector());
+
         return "give_book";
     }
     @GetMapping()
@@ -43,6 +45,7 @@ public class LibraryController {
         model.addAttribute("orders" , connectorService.getAllOrders());
         return "library";
     }
+
 
     @PostMapping()
     public String registerBook(@ModelAttribute @Valid Connector connector ,

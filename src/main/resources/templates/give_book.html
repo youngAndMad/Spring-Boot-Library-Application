@@ -38,8 +38,10 @@
         <datalist id="STUDENTS">
             <option th:each="student: ${students}" th:text="${student.getFirstName()}">
         </datalist>
+        <div style="color: red" th:if="${#fields.hasErrors('studentName')}" th:errors="*{studentName}"></div>
     </div>
-    <div style="color: red" th:if="${#fields.hasErrors('studentName')}" th:errors="*{studentName}"></div>
+
+    <p></p>
     <div style="text-align: center">
         <h3>Choose book</h3>
         <input

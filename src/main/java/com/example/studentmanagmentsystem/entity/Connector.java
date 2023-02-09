@@ -29,6 +29,9 @@ public class Connector {
     @Column(name = "taken_at")
     private LocalDateTime takenAt;
 
+    @Transient
+    private boolean isExpired;
+
     public Connector(Long studentId, Long bookId , String studentName , String bookTitle) {
         this.studentId = studentId;
         this.bookTitle = bookTitle;
@@ -86,6 +89,12 @@ public class Connector {
         this.takenAt = takenAt;
     }
 
+    public boolean isExpired() {
+        return isExpired;
+    }
 
+    public void setExpired(boolean expired) {
+        isExpired = expired;
+    }
 }
 

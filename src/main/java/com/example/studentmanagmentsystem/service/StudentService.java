@@ -1,5 +1,6 @@
 package com.example.studentmanagmentsystem.service;
 
+import com.example.studentmanagmentsystem.entity.Connector;
 import com.example.studentmanagmentsystem.entity.Student;
 import com.example.studentmanagmentsystem.repository.StudentRepository;
 import com.example.studentmanagmentsystem.util.Enrichment;
@@ -47,6 +48,13 @@ public class StudentService {
         Student studentToSave = getStudentById(student.getId());
         enrichment.enrichStudent(student,studentToSave);
         saveStudent(studentToSave);
+    }
+    public List<Connector> getStudentBooks(Long studentId){
+      return connectorService.getAllOrders()
+                .stream()
+                .filter(order -> order.getStudentId()
+                        .equals(studentId))
+                .collect(Collectors.toList());
     }
 
     public void deleteStudentById(Long id) {
