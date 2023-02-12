@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Student Management System</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <h1 class="text-center"> Please login to our system </h1>
+            <div class="card-body">
+                <form th:object="${login}" th:method="POST" th:action="@{/auth}">
+
+                    <div class="form-group">
+                        <label> Enter your email </label>
+                        <input
+                                type="text"
+                                name="email"
+                                autocomplete="off"
+                                th:field="*{email}"
+                                class="form-control"
+                                placeholder="Enter your email"
+                        />
+                    </div>
+                    <div style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+
+
+                    <div class="form-group">
+                        <label> Enter your password </label>
+                        <input
+                                type="password"
+                                name="password"
+                                autocomplete="off"
+                                th:field="*{password}"
+                                class="form-control"
+                                placeholder="Enter your password"
+                        />
+
+                    </div>
+                    <div style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+
+
+                    <div class="box-footer" style="display: flex;justify-content: center">
+                        <button type="submit" class="btn btn-primary">
+                            Login as student
+                        </button>
+                    </div>
+
+
+                    <div class="box-footer" style="display: flex;justify-content: center;margin-top: 10px">
+
+                        <a th:href="@{/students/new}"
+                           class="btn btn-secondary">Registration</a>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

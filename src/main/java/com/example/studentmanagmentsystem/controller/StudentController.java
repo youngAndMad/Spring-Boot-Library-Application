@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("students")
@@ -62,7 +61,8 @@ public class StudentController {
     }
 
     @PostMapping("/{id}")
-    public String updateStudent(@PathVariable Long id, @ModelAttribute("student") @Valid Student student,
+    public String updateStudent(@PathVariable Long id,
+                                @ModelAttribute("student") @Valid Student student,
                                 BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {

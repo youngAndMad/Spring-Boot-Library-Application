@@ -20,7 +20,8 @@ public class Book {
     @Column(name = "author" , nullable = false)
     private String author;
 
-    @Min(value = 0 , message = "year should be greater than 0")
+    @Min(value = 0 ,
+            message = "year should be greater than 0")
     @Column(name = "year" , nullable = false)
     private int year;
 

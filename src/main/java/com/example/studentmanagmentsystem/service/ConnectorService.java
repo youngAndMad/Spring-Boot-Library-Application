@@ -9,6 +9,8 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.TreeSet;
 
 
 @Service
@@ -32,7 +34,7 @@ public class ConnectorService {
        List<Connector> connectors =  connectorRepository.findAll();
        connectors.stream().forEach(connector -> {
             Long time = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC) - connector.getTakenAt().toEpochSecond(ZoneOffset.UTC);
-            if(time > 86400)
+            if(time > 30)
                 connector.setExpired(true);});
        return connectors;
 

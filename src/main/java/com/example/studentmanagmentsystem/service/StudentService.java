@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -55,6 +56,10 @@ public class StudentService {
                 .filter(order -> order.getStudentId()
                         .equals(studentId))
                 .collect(Collectors.toList());
+    }
+
+    public Student findStudent(String email , String password){
+        return studentRepository.findStudentByEmailAndPassword(email,password).orElse(null);
     }
 
     public void deleteStudentById(Long id) {
